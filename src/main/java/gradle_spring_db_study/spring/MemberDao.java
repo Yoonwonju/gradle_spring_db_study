@@ -1,11 +1,17 @@
 package gradle_spring_db_study.spring;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,9 +35,37 @@ public class MemberDao {
 	}
 
 	public void insert(Member member) {
+		PreparedStatementCreator psc = new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement("INSERT INTO MEMBER(EMAIL, PASSWORD, NAME, REGDATE) VALUES(?, ?, ?, ?)");
+				pstmt.setString(1, member.getEmail());
+				pstmt.setString(2, member.getPassword());
+				pstmt.setString(3, member.getName());
+				pstmt.setTimestamp(4, Timestamp.valueOf(member.getRegisterDateTime()));
+				return pstmt;
+			}
+		};
 	}
 
 	public void update(Member member) {
+//		String sql = "UPDATE MEMBER SET NAME = ?, PASSWORD = ? WHERE ID = ?";
+		jdbcTemplate.update("UPDATE MEMBER SET NAME = ?, PASSWORD = ? WHERE EMAIL = ?",
+				member.getName(), member.getPassword(), member.getEmail());
+	}
+
+	public void delete(Member member) {
+		PreparedStatementCreator psc = new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				PreparedStatement pstmt = con.prepareStatement("DELETE FROM MEMBER WHERE EMAIL = ?");
+				pstmt.setString(1, member.getEmail());
+				return pstmt;
+			}
+		};
+		jdbcTemplate.update(psc);
 	}
 
 	/* 결과가 1개 이상인 경우 */
