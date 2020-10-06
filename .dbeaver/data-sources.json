@@ -1,10 +1,10 @@
 {
 	"folders": {},
 	"connections": {
-		"oracle_thin-174d2223840-274d0387722f4793": {
+		"oracle_thin-174d22155ad-221fdc99a1610ec7": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "orcl - system",
+			"name": "orcl(system)",
 			"save-password": true,
 			"show-system-objects": true,
 			"read-only": false,
@@ -13,7 +13,7 @@
 				"port": "1521",
 				"database": "orcl",
 				"url": "jdbc:oracle:thin:@//localhost:1521/orcl",
-				"home": "F:\\app\\lenovo\\product\\11.2.0\\dbhome_2",
+				"home": "D:\\app\\lenovo\\product\\11.2.0\\dbhome_1",
 				"type": "dev",
 				"provider-properties": {
 					"@dbeaver-check-schema-content@": "false",
@@ -30,10 +30,10 @@
 				"handlers": {}
 			}
 		},
-		"oracle_thin-174d223d9e9-5533f7e82a0f532c": {
+		"oracle_thin-174d223aada-16267ca5b7b4af87": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "orcl - spring5",
+			"name": "orcl(spring5)",
 			"save-password": true,
 			"show-system-objects": true,
 			"read-only": false,
@@ -42,7 +42,7 @@
 				"port": "1521",
 				"database": "orcl",
 				"url": "jdbc:oracle:thin:@//localhost:1521/orcl",
-				"home": "F:\\app\\lenovo\\product\\11.2.0\\dbhome_2",
+				"home": "D:\\app\\lenovo\\product\\11.2.0\\dbhome_1",
 				"type": "dev",
 				"provider-properties": {
 					"@dbeaver-check-schema-content@": "false",
